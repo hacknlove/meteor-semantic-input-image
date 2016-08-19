@@ -3,7 +3,8 @@
     <label class="ui icon button">
       <i class="photo icon"></i>
       {{#if caption}}{{caption}}{{else}}Upload Photo{{/if}}
-      <input name="{{name}}" class="inputImage" type="file" style="display:none">
+      <input name="{{name}}" class="inputImage" type="hidden">
+      <input type="file" style="display:none">
     </label>
   </div>
 </template>

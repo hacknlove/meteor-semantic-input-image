@@ -1,30 +1,31 @@
 /* globals Template, FileReader  */
 
 Template.inputImage.onRendered(function () {
-  if (!this.$('input').data('dataURL')) {
-    this.$('input').data('dataURL', this.data.default).trigger('fileloaded', this.data.default)
+  if (!this.$('input.inputImage').val()) {
+    this.$('input.inputImage').val(this.data.default).trigger('change', this.data.default)
   }
 })
 
 Template.inputImage.events({
-  'change input': function (event, instance) {
-    var $this = instance.$(event.currentTarget)
+  'change input[type=file]': function (event, instance) {
+    var hidden = instance.$('input.inputImage')
+
     var file = event.currentTarget.files[0]
 
     if (!file) {
-      $this.data('dataURL', Template.currentData().default)
-      return $this.trigger('cancel')
+      hidden.val(Template.currentData().default)
+      return hidden.trigger('change')
     }
     if (!file.type.match('image.*')) {
-      $this.data('dataURL', Template.currentData().default)
-      return $this.trigger('badtype')
+      hidden.val(Template.currentData().default)
+      return hidden.trigger('change')
     }
 
     var reader = new FileReader()
 
     reader.onload = function (e) {
-      $this.data('dataURL', e.target.result)
-      return $this.trigger('fileloaded', e.target.result)
+      hidden.val(e.target.result)
+      return hidden.trigger('change', e.target.result, file)
     }
     reader.readAsDataURL(file)
   }
