@@ -1,4 +1,7 @@
-/* globals Template, FileReader  */
+/* globals
+  Template
+  URL
+*/
 
 Template.inputImage.onRendered(function () {
   if (!this.$('input.inputImage').val()) {
@@ -21,12 +24,8 @@ Template.inputImage.events({
       return hidden.trigger('change')
     }
 
-    var reader = new FileReader()
-
-    reader.onload = function (e) {
-      hidden.val(e.target.result)
-      return hidden.trigger('change', e.target.result, file)
-    }
-    reader.readAsDataURL(file)
+    hidden.val(URL.createObjectURL(file))
+    hidden.data('file', file)
+    return hidden.trigger('change', URL.createObjectURL(file), file)
   }
 })
