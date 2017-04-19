@@ -4,7 +4,7 @@
 */
 
 Template.inputImage.onRendered(function () {
-  if (!this.$('input.inputImage').val()) {
+  if (!this.$('input.inputImage').val() && this.data.default) {
     this.$('input.inputImage').val(this.data.default).trigger('change', this.data.default)
   }
 })
