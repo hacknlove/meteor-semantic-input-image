@@ -3,23 +3,19 @@
   URL
 */
 
-Template.inputImage.onRendered(function () {
-  if (!this.$('input.inputImage').val() && this.data.default) {
-    this.$('input.inputImage').val(this.data.default).trigger('change', this.data.default)
+Template.inputBinary.onRendered(function () {
+  if (!this.$('input.inputBinary').val() && this.data.default) {
+    this.$('input.inputBinary').val(this.data.default).trigger('change', this.data.default)
   }
 })
 
-Template.inputImage.events({
+Template.inputBinary.events({
   'change input[type=file]': function (event, instance) {
-    var hidden = instance.$('input.inputImage')
+    var hidden = instance.$('input.inputBinary')
 
     var file = event.currentTarget.files[0]
 
     if (!file) {
-      hidden.val(Template.currentData().default)
-      return hidden.trigger('change')
-    }
-    if (!file.type.match('image.*')) {
       hidden.val(Template.currentData().default)
       return hidden.trigger('change')
     }
