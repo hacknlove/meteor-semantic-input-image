@@ -2,7 +2,7 @@
 
 Package.describe({
   name: 'hacknlove:semantic-input-image',
-  version: '0.1.0',
+  version: '0.2.0',
   summary: 'semantic button, for meteor, that loads an image from the filesystem and launch some events',
   git: 'https://github.com/hacknlove/meteor-semantic-input-image',
   documentation: 'README.md'
